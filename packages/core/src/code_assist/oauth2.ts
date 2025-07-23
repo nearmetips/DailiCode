@@ -3,7 +3,7 @@
  * Copyright 2025 Google LLC
  * SPDX-License-Identifier: Apache-2.0
  */
-import 'dotenv/config'; 
+
 import { OAuth2Client, Credentials, Compute } from 'google-auth-library';
 import * as http from 'http';
 import url from 'url';
@@ -16,10 +16,17 @@ import * as os from 'os';
 import { getErrorMessage } from '../utils/errors.js';
 import { AuthType } from '../core/contentGenerator.js';
 
-// 从环境变量中读取 OAuth Client ID 和 Secret
-// 注意：这些值应该在 .env 文件中配置，不应该硬编码在代码中
-const OAUTH_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
-const OAUTH_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
+//  OAuth Client ID used to initiate OAuth2Client class.
+const OAUTH_CLIENT_ID =
+  '681255809395-oo8ft2oprdrnp9e3aqf6av3hmdib135j.apps.googleusercontent.com';
+
+// OAuth Secret value used to initiate OAuth2Client class.
+// Note: It's ok to save this in git because this is an installed application
+// as described here: https://developers.google.com/identity/protocols/oauth2#installed
+// "The process results in a client ID and, in some cases, a client secret,
+// which you embed in the source code of your application. (In this context,
+// the client secret is obviously not treated as a secret.)"
+const OAUTH_CLIENT_SECRET = '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';
 
 // OAuth Scopes for Cloud Code authorization.
 const OAUTH_SCOPE = [
@@ -51,13 +58,6 @@ export interface OauthWebLogin {
 export async function getOauthClient(
   authType: AuthType,
 ): Promise<OAuth2Client> {
-  // 验证环境变量是否已配置
-  if (!OAUTH_CLIENT_ID || !OAUTH_CLIENT_SECRET) {
-    throw new Error(
-      'Google OAuth credentials not configured. Please set GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET in your .env file.'
-    );
-  }
-
   const client = new OAuth2Client({
     clientId: OAUTH_CLIENT_ID,
     clientSecret: OAUTH_CLIENT_SECRET,

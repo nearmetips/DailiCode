@@ -4,7 +4,7 @@
   "description": "Gemini CLI Core",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ConardLi/daili-code.git"
+    "url": "git+https://github.com/nearmetips/DailiCode.git"
   },
   "type": "module",
   "main": "dist/index.js",
