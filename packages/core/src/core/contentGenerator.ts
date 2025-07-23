@@ -41,6 +41,7 @@ export enum AuthType {
   USE_VERTEX_AI = 'vertex-ai',
   CLOUD_SHELL = 'cloud-shell',
   CUSTOM_LLM_API = 'custom-llm-api',
+  DAILICODE_OAUTH = 'dailicode-oauth',
 }
 
 export type ContentGeneratorConfig = {
@@ -67,10 +68,11 @@ export async function createContentGeneratorConfig(
     authType,
   };
 
-  // If we are using Google auth or we are in Cloud Shell, there is nothing else to validate for now
+  // If we are using Google auth, DailiCode auth, or we are in Cloud Shell, there is nothing else to validate for now
   if (
     authType === AuthType.LOGIN_WITH_GOOGLE ||
-    authType === AuthType.CLOUD_SHELL
+    authType === AuthType.CLOUD_SHELL ||
+    authType === AuthType.DAILICODE_OAUTH
   ) {
     return contentGeneratorConfig;
   }
@@ -122,6 +124,11 @@ export async function createContentGenerator(
       config.authType,
       sessionId,
     );
+  }
+
+  if (config.authType === AuthType.DAILICODE_OAUTH) {
+    const { createDailicodeContentGenerator } = await import('../code_assist/dailicode-content-generator.js');
+    return createDailicodeContentGenerator(httpOptions, sessionId);
   }
 
   if (
