@@ -23,17 +23,26 @@ export function AuthDialog({
   settings,
   initialErrorMessage,
 }: AuthDialogProps): React.JSX.Element {
-  const [errorMessage, setErrorMessage] = useState<string | null>(
-    initialErrorMessage
-      ? initialErrorMessage
-      : process.env.GEMINI_API_KEY
-        ? 'Existing API key detected (GEMINI_API_KEY). Select "Gemini API Key" option to use it.'
-        : null,
-  );
+  const [errorMessage, setErrorMessage] = useState<string | null>(() => {
+    if (initialErrorMessage) return initialErrorMessage;
+    if (process.env.DAILICODE_API_KEY) {
+      return 'Existing API key detected (DAILICODE_API_KEY). Select "DailiCode API Key" option to use it.';
+    }
+    if (process.env.GEMINI_API_KEY) {
+      return 'Existing API key detected (GEMINI_API_KEY). Select "Gemini API Key" option to use it.';
+    }
+    return null;
+  });
+
   const items = [
     {
       label: 'Login with Google',
       value: AuthType.LOGIN_WITH_GOOGLE,
+    },
+    // 这是你新增的 DailiCode 选项
+    {
+      label: 'Use DailiCode API Key',
+      value: AuthType.USE_DAILICODE, // 假设这是你新增的 AuthType
     },
     ...(process.env.CLOUD_SHELL === 'true'
       ? [
@@ -47,18 +56,21 @@ export function AuthDialog({
       label: 'Use Gemini API Key',
       value: AuthType.USE_GEMINI,
     },
-    { label: 'Vertex AI', value: AuthType.USE_VERTEX_AI },
+    
   ];
 
   const initialAuthIndex = items.findIndex((item) => {
     if (settings.merged.selectedAuthType) {
       return item.value === settings.merged.selectedAuthType;
     }
-
+    // 优先选择 DailiCode
+    if (process.env.DAILICODE_API_KEY) {
+        return item.value === AuthType.USE_DAILICODE;
+    }
     if (process.env.GEMINI_API_KEY) {
       return item.value === AuthType.USE_GEMINI;
     }
-
+    // 默认回退到 Google 登录
     return item.value === AuthType.LOGIN_WITH_GOOGLE;
   });
 
@@ -119,12 +131,12 @@ export function AuthDialog({
         <Text color={Colors.Gray}>(Use Enter to select)</Text>
       </Box>
       <Box marginTop={1}>
-        <Text>Terms of Services and Privacy Notice for Gemini CLI</Text>
+        <Text>Terms of Services and Privacy Notice for DailiCode CLI</Text>
       </Box>
       <Box marginTop={1}>
         <Text color={Colors.AccentBlue}>
           {
-            'https://github.com/google-gemini/gemini-cli/blob/main/docs/tos-privacy.md'
+            'https://github.com/nearmetips/DailiCode/blob/main/docs/tos-privacy.md'
           }
         </Text>
       </Box>
