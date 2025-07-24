@@ -54,7 +54,7 @@
 或者使用以下命令安装：
 
 ```bash
- npm install
+npm install
 npm run build
 npm link
 dlc
