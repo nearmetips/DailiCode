@@ -327,5 +327,5 @@ export async function getRawGoogleAccountId(
   } catch (error) {
     console.error('Error retrieving or verifying Google Account ID:', error);
     return null;
-  }
+  }  
 }
