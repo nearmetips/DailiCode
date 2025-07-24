@@ -4,6 +4,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
+import 'dotenv/config'; // 确保这一行在最上面，用来加载 .env 文件
 import { OAuth2Client, Credentials, Compute } from 'google-auth-library';
 import * as http from 'http';
 import url from 'url';
@@ -16,7 +17,11 @@ import * as os from 'os';
 import { getErrorMessage } from '../utils/errors.js';
 import { AuthType } from '../core/contentGenerator.js';
 
-
+// --- 正确的定义方式 ---
+// 从环境变量中安全地读取 OAuth Client ID 和 Secret
+const OAUTH_CLIENT_ID = process.env.GOOGLE_CLIENT_ID || '';
+const OAUTH_CLIENT_SECRET = process.env.GOOGLE_CLIENT_SECRET || '';
+// --------------------
 
 // OAuth Scopes for Cloud Code authorization.
 const OAUTH_SCOPE = [
@@ -26,8 +31,8 @@ const OAUTH_SCOPE = [
 ];
 
 const HTTP_REDIRECT = 301;
-const SIGN_IN_SUCCESS_URL =
-  'https://developers.google.com/gemini-code-assist/auth_success_gemini';
+// 你可以把这里换成你的网站，以获得更好的品牌体验
+const SIGN_IN_SUCCESS_URL = 'https://www.dailicode.com';
 const SIGN_IN_FAILURE_URL =
   'https://developers.google.com/gemini-code-assist/auth_failure_gemini';
 
@@ -48,6 +53,13 @@ export interface OauthWebLogin {
 export async function getOauthClient(
   authType: AuthType,
 ): Promise<OAuth2Client> {
+  // 增加一个检查，如果.env文件没加载成功，就给出明确提示
+  if (!OAUTH_CLIENT_ID || !OAUTH_CLIENT_SECRET) {
+    throw new Error(
+      'Google OAuth Client ID and Secret are not configured. Please ensure you have a .env file in the project root with GOOGLE_CLIENT_ID and GOOGLE_CLIENT_SECRET defined.',
+    );
+  }
+
   const client = new OAuth2Client({
     clientId: OAUTH_CLIENT_ID,
     clientSecret: OAUTH_CLIENT_SECRET,
