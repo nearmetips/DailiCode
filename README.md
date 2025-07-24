@@ -73,6 +73,17 @@ export CUSTOM_LLM_API_KEY="your-api-key"     # 你的 LLM 提供商 API 密钥
 export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API 端点
 export CUSTOM_LLM_MODEL_NAME="your-model-name"  # 模型名称
 
+
+# OpenRouter Configuration (推荐使用)
+# 获取 API Key: https://openrouter.ai/keys
+USE_CUSTOM_LLM=true
+CUSTOM_LLM_PROVIDER="openai"
+CUSTOM_LLM_API_KEY="your-api-key""
+CUSTOM_LLM_ENDPOINT="https://openrouter.ai/api/v1"
+CUSTOM_LLM_MODEL_NAME="qwen/qwen3-coder:free"
+
+ 
+
 # 可选参数
 export CUSTOM_LLM_TEMPERATURE=0.7  # 温度参数（默认值：0）
 export CUSTOM_LLM_MAX_TOKENS=8192  # 最大令牌数（默认值：8192）
