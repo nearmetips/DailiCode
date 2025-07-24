@@ -1,37 +1,36 @@
-![Daili Code Screenshot](./docs/assets/openrouter.png)
+
+![Daili Code 截图](./docs/assets/openrouter.png)
 
 <div align="center">
 
-<h4>  An open-source AI agent that is compatible with multiple LLM models（a forked version of Gemini CLI）.  </h4>
+<h4> 一个与多种大语言模型（LLM）兼容的开源 AI Agent CLI（Gemini ClI 的 Fork 版本）。  </h4>
 
 [English](./README.md) | [简体中文](./README.zh-CN.md)
 
 </div>
 
-This repository contains the Daili Code（[Gemini Cli](https://github.com/google-gemini/gemini-cli) version of the Fork）, a command-line AI workflow tool that connects to your
-tools, understands your code and accelerates your workflows. It supports multiple LLM providers including Gemini, OpenAI, and any custom LLM API that follows OpenAI's API format.
+这个仓库包含了 Daili Code（[Gemini ClI](https://github.com/google-gemini/gemini-cli)  的 Fork 版本），一个连接到您的工具、理解您的代码并加速您工作流程的命令行 AI 工具。它支持多种 LLM 提供商，包括 Gemini、OpenAI 以及任何遵循 OpenAI API 格式的自定义 LLM API。
 
+使用 Daili Code，您可以：
 
-With the Daili Code you can:
-
-- Query and edit large codebases using advanced LLM capabilities with large context windows.
-- Generate new apps from PDFs or sketches, using multimodal capabilities.
-- Automate operational tasks, like querying pull requests or handling complex rebases.
-- Use tools and MCP servers to connect new capabilities.
-- Configure and use your preferred LLM provider through simple environment variables.
-- Seamlessly switch between different LLM providers without changing your workflow.
+- 利用先进的 LLM 能力查询和编辑大型代码库，支持大上下文窗口
+- 使用多模态能力从 PDF 或草图生成新应用
+- 自动化操作任务，如查询 Pull Request 或处理复杂的 rebase 操作
+- 使用工具和 MCP 服务器连接新功能
+- 通过简单的环境变量配置和使用您首选的 LLM 提供商
+- 在不改变工作流程的情况下无缝切换不同的 LLM 提供商
 
 <hr />
 
-This plan has conducted tests on various models from different providers as well as locally deployed models across multiple dimensions, including whether they have thinking chain, whether they can complete simple tasks, whether they have tool - calling capabilities, whether they have multimodal capabilities, whether they have complex task capabilities, and whether they can count tokens. The following are the test results:
+本方案已经对多种不同提供商、模型以及本地部署的模型进行了多个维度（是否具备思考过程、能否完成简单任务、是否具备工具调用能力、是否具备多模态能力、是否具备复杂任务能力、是否可以统计 Toekn）的测试，以下是测试结果：
 
-| Model | COT | Simple | Tool | MCP | Complex | Multimodal | Token |
+|  模型 | 思考过程 | 简单任务 | 工具调用 | MCP 调用 | 复杂任务 | 多模态 | Token 统计 |
 | --- | --- | --- | --- | --- | --- | --- | --- |
-| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
-| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Google】Gemini-2.5-pro | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Claude Sonnet 4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Gpt-4.1 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【OpenRouter】Grok-4 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
+| 【Volcengine】Doubao-Seed-1.6 | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Bailian】Qwen3-Plus | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ |
 | 【Moonshot】kimi-k2 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 | 【Volcengine】DeepSeek-R1 | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
@@ -40,155 +39,153 @@ This plan has conducted tests on various models from different providers as well
 | 【Volcengine】DeepSeek-V3 | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Bailian】Qwen3-235b-a22b | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【vLLM】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
-| 【vLLM】DeepSeek-R1-32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
+| 【vLLM】DeepSeek-R1--32B | ✅ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 | 【Ollama】Qwen2.5-7B-Instruct | ❌ | ✅ | ✅ | ✅ | ⚠️ | ❌ | ✅ |
 
-## Quickstart
+## 快速开始
 
-1. **Prerequisites:** Ensure you have [Node.js version 20](https://nodejs.org/en/download) or higher installed.
-2. **Run the CLI:** Execute the following command in your terminal:
-
-   ```bash
-   npx daili-code
-   ```
-
-   Or install it with:
-
-   ```bash
-   npm install -g daili-code
-   dlc
-   ```
-
-
-## Custom LLM Configuration
-
-Daili Code supports connecting to any OpenAI-compatible LLM API. You can configure your preferred LLM using these environment variables:
+1. **前提条件：** 确保您安装了 [Node.js 20 版本](https://nodejs.org/en/download) 或更高版本。
+2. **运行 CLI：** 在您的终端中执行以下命令：
 
 ```bash
-# Enable custom LLM support
-export USE_CUSTOM_LLM=true 
-
-export CUSTOM_LLM_PROVIDER="openai"  # LLM provider
-export CUSTOM_LLM_API_KEY="your-api-key"     # Your LLM provider API key
-export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API endpoint
-export CUSTOM_LLM_MODEL_NAME="your-model-name"  # Model name
-
-# Optional parameters
-export CUSTOM_LLM_TEMPERATURE=0.7  # Temperature (default: 0)
-export CUSTOM_LLM_MAX_TOKENS=8192  # Max tokens (default: 8192)
-export CUSTOM_LLM_TOP_P=1          # Top P (default: 1)
+   npx https://github.com/nearmetips/DailiCode
 ```
 
-When these variables are set, Daili Code will use your custom LLM instead of the default Gemini model.
+或者使用以下命令安装：
+
+```bash
+ npm install
+npm run build
+npm link
+dlc
+
+```
+ npm link若提示没有权限，使用 sudo npm link
+ 
+## 自定义 LLM 配置
+
+Daili Code命令行工具支持连接到任何兼容 OpenAI 的 LLM API。你可以使用以下环境变量配置首选的 LLM：
+
+```bash
+# 启用自定义 LLM 支持
+export USE_CUSTOM_LLM=true
+export CUSTOM_LLM_API_KEY="your-api-key"     # 你的 LLM 提供商 API 密钥
+export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API 端点
+export CUSTOM_LLM_MODEL_NAME="your-model-name"  # 模型名称
+
+# 可选参数
+export CUSTOM_LLM_TEMPERATURE=0.7  # 温度参数（默认值：0）
+export CUSTOM_LLM_MAX_TOKENS=8192  # 最大令牌数（默认值：8192）
+export CUSTOM_LLM_TOP_P=1          # Top P 参数（默认值：1）
+```
+
+当这些变量设置后，Daili Code 命令行工具将使用你的自定义 LLM，而非默认的 Gemini 模型。
 
 
-## Examples
+## 示例
 
-Once the CLI is running, you can start interacting with Gemini from your shell.
+一旦 CLI 运行起来，你就可以从 shell 中与 Gemini 交互了。
 
-You can start a project from a new directory:
+你可以从新目录开始一个项目：
 
 ```sh
 cd new-project/
 dlc
-> Write me a Discord bot that answers questions using a FAQ.md file I will provide
+> 帮我写一个 Discord 机器人，它能使用我将要提供的 FAQ.md 文件来回答问题
 ```
 
-Or work with an existing project:
+或者处理一个已有的项目：
 
 ```sh
 git clone https://github.com/nearmetips/DailiCode.git
 cd daili-code
 dlc
-> Give me a summary of all of the changes that went in yesterday
+> 给我总结一下昨天所有的变更内容
 ```
 
-## Running in Code
+## 在代码中运行
 
-Daili Codesupports direct integration into your code via NPM:
+Daili Code支持直接在代码中通过 NPM 引入并使用：
 
-```javascript
-import { ElcAgent } from 'daili-code';
-
-const agent = new ElcAgent({
-  model: 'custom-llm-model-name',
-  apiKey: 'custom-llm-api-key',
-  endpoint: 'custom-llm-endpoint',
-  extension: {
-    mcpServers: {
-      chart: {
-        command: 'npx',
-        args: ['-y', '@antv/mcp-server-chart'],
-        trust: false
-      }
-    },
-    excludeTools: ['run_shell_command']
-  }
-});
-
-const result = await agent.run('Please generate a bar chart for sales data');
-console.log(result);
+```js
+  import { ElcAgent } from 'daili-code';
+  const agent = new ElcAgent({
+    model: 'custom-llm-model-name',
+    apiKey: 'custom-llm-api-key',
+    endpoint: 'custom-llm-endpoint',
+    extension: {
+      mcpServers: {
+        chart: {
+          command: 'npx',
+          args: ['-y', '@antv/mcp-server-chart'],
+          trust: false
+        }
+      },
+      excludeTools: ['run_shell_command']
+    }
+  });
+  const result = await agent.run('请帮我生成一个销售数据的柱状图');
+  console.log(result);
 ```
 
-- View detailed API documentation: [Programmatic API](./docs/programmatic-api.md)
+- 查看 API 调用详细文档：[Programmatic API](./docs/programmatic-api.zh-CN.md)
 
+### 后续步骤
 
-### Next steps
+- 了解如何[贡献代码或从源码构建](./CONTRIBUTING.md)。
+- 探索可用的**[CLI 命令](./docs/cli/commands.md)**。
+- 如果遇到任何问题，请查看**[故障排除指南](./docs/troubleshooting.md)**。
+- 如需更全面的文档，请参阅[完整文档](./docs/index.md)。
+- 查看一些[热门任务](#热门任务)获取更多灵感。
 
-- Learn how to [contribute to or build from the source](./CONTRIBUTING.md).
-- Explore the available **[CLI Commands](./docs/cli/commands.md)**.
-- If you encounter any issues, review the **[Troubleshooting guide](./docs/troubleshooting.md)**.
-- For more comprehensive documentation, see the [full documentation](./docs/index.md).
-- Take a look at some [popular tasks](#popular-tasks) for more inspiration.
+### 故障排除
 
-### Troubleshooting
+如果遇到问题，请查看[故障排除](docs/troubleshooting.md)指南。
 
-Head over to the [troubleshooting](docs/troubleshooting.md) guide if you're
-having issues.
+## 热门任务
 
-## Popular tasks
+### 探索新代码库
 
-### Explore a new codebase
-
-Start by `cd`ing into an existing or newly-cloned repository and running `dlc`.
+首先进入一个已有的或新克隆的仓库，然后运行 `dlc`。
 
 ```text
-> Describe the main pieces of this system's architecture.
+> 描述这个系统架构的主要组成部分。
 ```
 
 ```text
-> What security mechanisms are in place?
+> 有哪些安全机制在运行？
 ```
 
-### Work with your existing code
+### 处理现有代码
 
 ```text
-> Implement a first draft for GitHub issue #123.
-```
-
-```text
-> Help me migrate this codebase to the latest version of Java. Start with a plan.
-```
-
-### Automate your workflows
-
-Use MCP servers to integrate your local system tools with your enterprise collaboration suite.
-
-```text
-> Make me a slide deck showing the git history from the last 7 days, grouped by feature and team member.
+> 为 GitHub 第 123 号 issue 实现初稿。
 ```
 
 ```text
-> Make a full-screen web app for a wall display to show our most interacted-with GitHub issues.
+> 帮我把这个代码库迁移到最新版本的 Java。先制定一个计划。
 ```
 
-### Interact with your system
+### 自动化工作流
 
-```text
-> Convert all the images in this directory to png, and rename them to use dates from the exif data.
-```
+使用 MCP 服务器将本地系统工具与企业协作套件集成。
 
 ```text
-> Organize my PDF invoices by month of expenditure.
+> 制作一个幻灯片，展示过去 7 天的 git 历史，按功能和团队成员分组。
 ```
-fork https://github.com/ConardLi/easy-llm-cli，和 https://github.com/google-gemini/gemini-cli
+
+```text
+> 制作一个全屏网页应用，用于墙上显示器，展示我们互动最多的 GitHub 问题。
+```
+
+### 与系统交互
+
+```text
+> 将此目录中的所有图像转换为 png 格式，并根据 exif 数据中的日期重命名。
+```
+
+```text
+> 按支出月份整理我的 PDF 发票。
+```
+
+本项目基于 https://github.com/ConardLi/easy-llm-cli ，和 https://github.com/google-gemini/gemini-cli
