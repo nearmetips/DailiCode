@@ -203,4 +203,4 @@ Daili Code支持直接在代码中通过 NPM 引入并使用：
 > 按支出月份整理我的 PDF 发票。
 ```
 
-本项目基于 [easy llm cli](https://github.com/ConardLi/easy-llm-cli) ，和 [gemini cli](https://github.com/google-gemini/gemini-cli）
+本项目基于 [easy llm cli](https://github.com/ConardLi/easy-llm-cli) ，和 [gemini cli](https://github.com/google-gemini/gemini-cli)
