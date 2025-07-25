@@ -67,14 +67,18 @@ dlc
 Daili Code命令行工具支持连接到任何兼容 OpenAI 的 LLM API。你可以使用以下环境变量配置首选的 LLM：
 
 ```bash
-# 启用自定义 LLM 支持
+# 启用自定义 LLM 代理
 export USE_CUSTOM_LLM=true
 export CUSTOM_LLM_API_KEY="your-api-key"     # 你的 LLM 提供商 API 密钥
 export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API 端点
 export CUSTOM_LLM_MODEL_NAME="your-model-name"  # 模型名称
 
+# 配置 - DailiCode 代理（即将推出）
+# DAILICODE_CLIENT_ID="your-dailicode-client-id-here"
+# DAILICODE_CLIENT_SECRET="your-dailicode-client-secret-here"
 
-# OpenRouter Configuration (推荐使用)
+
+# OpenRouter 代理 (推荐使用)
 # 获取 API Key: https://openrouter.ai/keys
 USE_CUSTOM_LLM=true
 CUSTOM_LLM_PROVIDER="openai"
@@ -199,4 +203,4 @@ Daili Code支持直接在代码中通过 NPM 引入并使用：
 > 按支出月份整理我的 PDF 发票。
 ```
 
-本项目基于 https://github.com/ConardLi/easy-llm-cli ，和 https://github.com/google-gemini/gemini-cli
+本项目基于 [easy llm cli](https://github.com/ConardLi/easy-llm-cli) ，和 [gemini cli](https://github.com/google-gemini/gemini-cli）
