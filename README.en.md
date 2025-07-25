@@ -72,6 +72,19 @@ export CUSTOM_LLM_API_KEY="your-api-key"     # Your LLM provider API key
 export CUSTOM_LLM_ENDPOINT="https://api.your-llm-provider.com/v1"  # API endpoint
 export CUSTOM_LLM_MODEL_NAME="your-model-name"  # Model name
 
+# 配置 - DailiCode 代理（即将推出）
+# DAILICODE_CLIENT_ID="your-dailicode-client-id-here"
+# DAILICODE_CLIENT_SECRET="your-dailicode-client-secret-here"
+
+
+# OpenRouter 代理 (推荐使用)
+# 获取 API Key: https://openrouter.ai/keys
+USE_CUSTOM_LLM=true
+CUSTOM_LLM_PROVIDER="openai"
+CUSTOM_LLM_API_KEY="your-api-key""
+CUSTOM_LLM_ENDPOINT="https://openrouter.ai/api/v1"
+CUSTOM_LLM_MODEL_NAME="qwen/qwen3-coder:free"
+
 # Optional parameters
 export CUSTOM_LLM_TEMPERATURE=0.7  # Temperature (default: 0)
 export CUSTOM_LLM_MAX_TOKENS=8192  # Max tokens (default: 8192)
@@ -190,5 +203,5 @@ Use MCP servers to integrate your local system tools with your enterprise collab
 ```text
 > Organize my PDF invoices by month of expenditure.
 ```
-fork https://github.com/ConardLi/easy-llm-cli ， 和 https://github.com/google-gemini/gemini-cli
+fork  [easy llm cli](https://github.com/ConardLi/easy-llm-cli) , [gemini cli](https://github.com/google-gemini/gemini-cli)
 
