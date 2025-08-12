@@ -51,7 +51,7 @@
     "shell-quote": "^1.8.3",
     "string-width": "^7.1.0",
     "strip-ansi": "^7.1.0",
-    "strip-json-comments": "^3.1.1",
+    "strip-json-comments": "^5.0.3",
     "update-notifier": "^7.3.1",
     "yargs": "^17.7.2"
   },
